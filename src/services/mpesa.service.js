@@ -29,7 +29,7 @@ class MpesaService {
             checkoutRequestID: CheckoutRequestID,
             resultCode: ResultCode,
             resultDesc: ResultDesc,
-            status: this.getTransactionStatus(ResultCode)
+            status: this.mapResultCodeToStatus(ResultCode)
         };
 
         if (ResultCode === 0 && CallbackMetadata?.Item) {
@@ -68,7 +68,7 @@ class MpesaService {
         return metadata;
     }
 
-    getTransactionStatus(resultCode) {
+    mapResultCodeToStatus(resultCode) {
         const statusMap = {
             0: 'success',
             1: 'insufficient_funds',
